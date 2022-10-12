@@ -108,3 +108,31 @@ kubectl create namespace argocd
 7.3 Port foward from onther session check the application status
   kubectl port-forward svc/guestbook-helm-guestbook 9090:80 -n myapp
   http://localhost:9090
+
+  ===============
+
+
+
+  kubectl	get ns
+
+eksctl get cluster --name eksargocd --region us-east-2
+
+kubectl get pods --all-namespaces
+
+
+AWS EKS CD with ArgoCD
+
+
+
+kubectl create namespace argocd
+
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+
+
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+http://localhost:8080 
+
+kubectl port-forward svc/guestbook-helm-guestbook 9090:80 -n myapp
+http://localhost:9090
